@@ -2,7 +2,7 @@
 namespace CEC\Toolbox;
 
 /**
- * A renderable object that renderes into text
+ * A renderable object that renders into text
  */
 interface Renderable
 {
