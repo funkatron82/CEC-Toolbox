@@ -40,11 +40,7 @@ class Element implements \CEC\Toolbox\Renderable\Node
         //Lower case everything
         $tagName = strtolower($tagName);
         //Make alpha (removes all other characters)
-        $tagName = preg_replace("/[^a-z_\s-]/", "", $tagName);
-        //Clean up multiple dashes or whitespaces
-        $tagName = preg_replace("/[\s-]+/", " ", $tagName);
-        //Convert whitespaces and underscore to dash
-        $tagName = preg_replace("/[\s_]/", "-", $tagName);
+        $tagName = preg_replace("/[^a-z0-9]/", "", $tagName);
         return $tagName;
     }
 

@@ -37,7 +37,7 @@ class ClassList implements \CEC\Toolbox\Renderable
         });
     }
 
-    public function conmtains($class)
+    public function contains($class)
     {
         $class = $this->sanitize($class);
         return (isset($this->$classes[$class]) && $this->$classes[$class]);
