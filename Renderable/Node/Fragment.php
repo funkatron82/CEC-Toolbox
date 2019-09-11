@@ -1,7 +1,7 @@
 <?php
 namespace CEC\Toolbox\Renderable\Node;
 
-class Fragment implements \CEC\Toolbox\Admin\Node
+class Fragment implements \CEC\Toolbox\Renderable\Node
 {
     public function __construct(\CEC\Toolbox\Renderable\RenderableList $children)
     {
@@ -21,7 +21,7 @@ class Fragment implements \CEC\Toolbox\Admin\Node
         }
         return $this;
     }
-    
+
     public function render()
     {
         return $this->children->render();
