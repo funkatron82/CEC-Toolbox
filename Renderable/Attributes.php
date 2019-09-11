@@ -28,7 +28,7 @@ class Attributes extends \CEC\Toolbox\Collection implements \CEC\Toolbox\Rendera
         if (is_null($offset)) {
             throw new \InvalidArgumentException("Attribute names must be defined.");
         }
-        $this->array[$offset] = is_bool($value) ? $value : (string) $value;
+        $this->array[$offset] = is_bool($value) ? $value : @htmlspecialchars((string) $value, ENT_COMPAT | ENT_HTML5);
     }
 
     public function offsetExists($offset)
