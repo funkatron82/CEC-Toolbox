@@ -2,21 +2,9 @@
 
 namespace CEC\Toolbox;
 
-abstract class Collection implements \ArrayAccess, \Iterator
+abstract class Collection implements \ArrayAccess, \Iterator, \Countable
 {
-    protected $position;
-
     protected $array = [];
-
-    public function __construct()
-    {
-        $this->position = 0;
-    }
-
-    public function current()
-    {
-        return $this->array[$this->position];
-    }
 
     public function offsetGet($offset)
     {
@@ -42,23 +30,33 @@ abstract class Collection implements \ArrayAccess, \Iterator
         unset($this->array[$offset]);
     }
 
+    public function current()
+    {
+        return current($this->array);
+    }
+
     public function next()
     {
-        ++$this->position;
+        next($this->array);
     }
 
     public function key()
     {
-        return $this->position;
+        return key($this->array);
     }
 
     public function valid()
     {
-        return isset($this->array[$this->position]);
+        return isset($this->array[$this->key()]);
     }
 
     public function rewind()
     {
-        $this->position = 0;
+        reset($this->array);
+    }
+
+    public function count()
+    {
+        return count($this->array);
     }
 }

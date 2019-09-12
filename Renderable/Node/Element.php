@@ -60,6 +60,13 @@ class Element implements \CEC\Toolbox\Renderable\Node
         return $this;
     }
 
+    public function setAttributes(array $attributes)
+    {
+        array_walk($attributes, function ($value, $key) {
+            $this->setAttribute($key, $value);
+        });
+    }
+
     public function removeAttribute($name)
     {
         unset($this->attributes[$name]);
