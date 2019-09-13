@@ -15,7 +15,7 @@ class Element implements \CEC\Toolbox\Renderable\Node
         \CEC\Toolbox\Renderable\ClassList $tclassList,
         \CEC\Toolbox\Renderable\RenderableList $children
     ) {
-        $this->tag = $this->sanitizeTag($tagName);
+        $this->tagName = $this->sanitizeTag($tagName);
         $this->attributes = $attributes;
         $this->classList = $tclassList;
         $this->children = $children;
@@ -65,6 +65,8 @@ class Element implements \CEC\Toolbox\Renderable\Node
         array_walk($attributes, function ($value, $key) {
             $this->setAttribute($key, $value);
         });
+
+        return $this;
     }
 
     public function removeAttribute($name)
@@ -107,7 +109,7 @@ class Element implements \CEC\Toolbox\Renderable\Node
 
     public function isVoidElement()
     {
-        return in_array($this->tag, self::VOID_TAGS);
+        return in_array($this->tagName, self::VOID_TAGS);
     }
 
     public function renderChildren()
@@ -117,12 +119,12 @@ class Element implements \CEC\Toolbox\Renderable\Node
 
     public function renderOpenTag()
     {
-        return sprintf("<%s%s>", $this->tag, $this->attributes->render());
+        return sprintf("<%s%s>", $this->tagName, $this->attributes->render());
     }
 
     public function renderCloseTag()
     {
-        return $this->isVoidElement() ? '' : sprintf("</%s>", $this->tag);
+        return $this->isVoidElement() ? '' : sprintf("</%s>", $this->tagName);
     }
 
     public function render()
