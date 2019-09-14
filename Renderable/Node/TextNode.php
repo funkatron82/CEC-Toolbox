@@ -3,6 +3,7 @@ namespace CEC\Toolbox\Renderable\Node;
 
 class TextNode implements \CEC\Toolbox\Renderable\Node
 {
+    use \CEC\Toolbox\Renderable\Node\Tree;
     protected $text;
     public function __construct($text)
     {
@@ -17,14 +18,6 @@ class TextNode implements \CEC\Toolbox\Renderable\Node
     public function appendChild(\CEC\Toolbox\Renderable $child)
     {
         $this->text .= $child->render();
-        return $this;
-    }
-
-    public function appendChildren(array $children)
-    {
-        foreach ($children as $child) {
-            $this->appendChild($child);
-        }
         return $this;
     }
 

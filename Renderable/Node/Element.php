@@ -3,7 +3,7 @@ namespace CEC\Toolbox\Renderable\Node;
 
 class Element implements \CEC\Toolbox\Renderable\Node
 {
-    protected $children;
+    use \CEC\Toolbox\Renderable\Node\Tree;
     protected $tagName;
     protected $attributes;
     protected $classList;
@@ -19,20 +19,6 @@ class Element implements \CEC\Toolbox\Renderable\Node
         $this->attributes = $attributes;
         $this->classList = $tclassList;
         $this->children = $children;
-    }
-
-    public function appendChild(\CEC\Toolbox\Renderable $child)
-    {
-        $this->children[] = $child;
-        return $this;
-    }
-
-    public function appendChildren(array $children)
-    {
-        foreach ($children as $child) {
-            $this->appendChild($child);
-        }
-        return $this;
     }
 
     public function sanitizeTag($tagName)
